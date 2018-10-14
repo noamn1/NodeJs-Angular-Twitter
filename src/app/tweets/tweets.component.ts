@@ -14,6 +14,7 @@ export class TweetsComponent implements OnInit {
   followers: number;
   tweetsCount: number;
 
+
   constructor(private tweetsService:TweetsService) { }
 
   async ngOnInit() {
