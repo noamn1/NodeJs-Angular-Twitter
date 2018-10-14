@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 // Get all posts
 router.get('/posts', (req, res) => {
 
-  fetch('http://127.0.0.1:5000')
+  fetch('http://twint:80/')
     .then((response) => response.json())
   .then((data) => {console.log('data: ', data); res.send(data);})
   .catch((error) => console.log('error: ', error));
@@ -30,7 +30,7 @@ router.get('/posts', (req, res) => {
 
 router.get('/tweets', async (req, res, next) => {
   try {
-    const response = await fetch('http://127.0.0.1:5000');
+    const response = await fetch('http://twint:80');
     console.log('after fetch');
     const json = await response.json();
     res.send(json);
