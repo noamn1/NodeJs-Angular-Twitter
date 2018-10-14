@@ -8,21 +8,9 @@ export class TweetsService {
 
   constructor(private http: Http) { }
 
-  // getAllTweets() {
-  //   console.log('getAllTweets');
-  //   return this.http.get('/api/tweets')
-  //     .map(res => res.json().replies.tweets);
-  // }
-
-
-
-   async getAllTweets(): Tweet[] {
-    //const response = await this.http.get('/api/tweets').toPromise();
-    let resp = await this.http.get('/api/tweets');
-    let arr: Tweet[] = await resp.json().tweets;
-    return arr;
-    //return this.http.get<Tweet[]>('/api/tweets').toPromise().then(res => res.json().replies.tweets);
-
+  async getAllTweets(): Promise<any> {
+    const response = await this.http.get('/api/tweets').toPromise();
+    return response.json();
   }
 
 }

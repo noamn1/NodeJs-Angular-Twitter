@@ -1,9 +1,26 @@
 <div class="container">
-  <div class="row" *ngFor="let tweet of tweets">
+  <div class="row" >
     <div class="card card-block">
-      <h4 class="card-title">{{ tweet.retweets }}</h4>
-      <p class="card-text">{{tweet.tweet}}</p>
-      
+      <h4 class="card-title">Num of all Tweets:</h4>
+      <p class="card-text">{{tweetsCount}}</p>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="card card-block">
+      <h4 class="card-title">Num of followers:</h4>
+      <p class="card-text">{{followers}}</p>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="card card-block">
+      <h4 class="card-title">Top Retweets:</h4>
+    </div>
+  </div>
+  <div class="row" *ngFor="let retweet of retweets">
+    <div class="card card-block">
+      <h4 class="card-title">{{ retweet.retweets }}</h4>
+      <p class="card-text">{{retweet.tweet}}</p>
+
     </div>
   </div>
 </div>

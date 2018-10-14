@@ -9,12 +9,18 @@ import { TweetsService } from '../tweets.service';
 export class TweetsComponent implements OnInit {
 
   tweets: any = [];
+  replies: any = [];
+  retweets: any = [];
+  followers: number;
+  tweetsCount: number;
 
   constructor(private tweetsService:TweetsService) { }
 
-  ngOnInit() {
-    // Retrieve tweets from the API
-
-    this.tweets = this.tweetsService.getAllTweets();
+  async ngOnInit() {
+    let data = await this.tweetsService.getAllTweets();
+    this.retweets = data.retweets;
+    this.replies = data.replies;
+    this.followers = data.followers;
+    this.tweetsCount = data.tweets_count;
   }
 }
