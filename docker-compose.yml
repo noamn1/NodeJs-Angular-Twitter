@@ -1,0 +1,21 @@
+version: '3'
+services:
+  twint:
+    restart: always
+    container_name: twint
+    build: ./Python-Twitter
+    ports:
+      - 5000:80
+    volumes:
+      - /usr/src/app/project/static 
+
+  web:
+    build: ./NodeJs-Angular-Twitter
+    ports:
+     - "3000:3000"
+    volumes:
+     - .:/code
+    links:
+    - twint
+
+
