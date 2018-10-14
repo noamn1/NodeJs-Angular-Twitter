@@ -13,9 +13,8 @@ export class TweetsComponent implements OnInit {
   constructor(private tweetsService:TweetsService) { }
 
   ngOnInit() {
-    // Retrieve posts from the API
-    this.tweetsService.getAllTweets().subscribe(tweets => {
-      this.tweets = tweets;
-    });
+    // Retrieve tweets from the API
+
+    this.tweets = this.tweetsService.getAllTweets();
   }
 }

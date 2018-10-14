@@ -1,28 +1,19 @@
-FROM python:3.6.5-alpine3.7
+FROM node:8.11.1
 
-# Update the apt-get list
-RUN apk update \
-    && apk add --virtual build-dependencies \
-        build-base \
-        gcc \
-        wget \
-        git \
-    && apk add \
-        bash
-RUN apk add --update alpine-sdk
+# install dependencies
+WORKDIR /opt/app
+COPY package.json package-lock.json* ./
+RUN npm cache clean --force && npm install
 
-RUN apk add --update \
-    python \
-    python-dev \
-    py-pip \
-    build-base \
-  && pip install virtualenv \
-  && rm -rf /var/cache/apk/*
+#Angular CLI
+RUN npm install -g @angular/cli
 
+# copy app source to image _after_ npm install so that
+# application code changes don't bust the docker cache of npm install step
+COPY . /opt/app
 
-WORKDIR /usr/src/app
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
+# set application PORT and expose docker PORT, 80 is what Elastic Beanstalk expects
+ENV PORT 80
+EXPOSE 80
 
-EXPOSE 5000
+CMD [ "npm", "run", "start" ]

@@ -27,12 +27,18 @@ router.get('/posts', (req, res) => {
   //     res.status(500).send(error)
   //   });
 });
-router.get('/tweets', (req, res) => {
 
-  fetch('http://127.0.0.1:5000')
-    .then((response) => response.json())
-  .then((data) => {console.log('data: ', data); res.send(data);})
-  .catch((error) => console.log('error: ', error));
-});
+router.get('/tweets', async (req, res, next) => {
+  try {
+    const response = await fetch('http://127.0.0.1:5000');
+    console.log('after fetch');
+    const json = await response.json();
+    res.send(json);
+  } catch (e) {
+    //this will eventually be handled by your error handling middleware
+    next(e)
+  }
+})
+
 
 module.exports = router;
