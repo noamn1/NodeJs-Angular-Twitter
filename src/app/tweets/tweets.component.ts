@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TweetsService } from '../tweets.service';
+import  {TweeterData, Tweet} from './tweet';
 
 @Component({
   selector: 'app-tweets',
@@ -8,9 +9,8 @@ import { TweetsService } from '../tweets.service';
 })
 export class TweetsComponent implements OnInit {
 
-  tweets: any = [];
-  replies: any = [];
-  retweets: any = [];
+  replies: Tweet[];
+  retweets: Tweet[];
   followers: number;
   tweetsCount: number;
 
@@ -18,7 +18,7 @@ export class TweetsComponent implements OnInit {
   constructor(private tweetsService:TweetsService) { }
 
   async ngOnInit() {
-    let data = await this.tweetsService.getAllTweets();
+    let data: TweeterData = await this.tweetsService.getAllTweets();
     this.retweets = data.retweets;
     this.replies = data.replies;
     this.followers = data.followers;
