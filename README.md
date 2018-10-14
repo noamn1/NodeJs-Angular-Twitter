@@ -7,3 +7,4 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 - git clone this project
 - copy docker-compose file to one folder above the previous projects directory
 - In the docker-compose directory  run: docker-compose up -d
+- Change twitter user name in .env file 
